@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qq77moon&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/ansible/index.html">
+<meta property="og:site_name" content="qq77moon&#39;s blog">
+<meta property="og:description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-23T12:38:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="qq77moon&#39;s blog">
+<meta name="twitter:description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/23/ansible/"/>
+
+
+
+
+
+  <title> | qq77moon's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">qq77moon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/23/ansible/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qq77moon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qq77moon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T20:38:32+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Ansible基础知识"><a href="#1-Ansible基础知识" class="headerlink" title="1.Ansible基础知识"></a>1.Ansible基础知识</h1><h2 id="1-1-Ansible安装"><a href="#1-1-Ansible安装" class="headerlink" title="1.1 Ansible安装"></a>1.1 Ansible安装</h2><h3 id="1-1-1-Mac下安装"><a href="#1-1-1-Mac下安装" class="headerlink" title="1.1.1 Mac下安装"></a>1.1.1 Mac下安装</h3><p>在Mac系统中安装Homebrew，之后使用brew安装ansible:</p>
+<pre><code>ruby -e &quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+brew update
+brew install Ansible
+</code></pre><h3 id="1-1-2-Ubuntu下安装"><a href="#1-1-2-Ubuntu下安装" class="headerlink" title="1.1.2 Ubuntu下安装"></a>1.1.2 Ubuntu下安装</h3><p>为Ubuntu获取Ansible的最佳方法是将项目的PPA（个人包存档）添加到系统中:</p>
+<pre><code>sudo apt-add-repository ppa:ansible/ansible
+</code></pre><p>接下来刷新系统的包索引并安装ansible:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install ansible
+</code></pre><h2 id="1-2-Ansible配置"><a href="#1-2-Ansible配置" class="headerlink" title="1.2 Ansible配置"></a>1.2 Ansible配置</h2><h1 id="2-Ansible踩过的坑"><a href="#2-Ansible踩过的坑" class="headerlink" title="2.Ansible踩过的坑"></a>2.Ansible踩过的坑</h1><ol>
+<li><p>目标主机python版本</p>
+<p> 在ansible的配置文件hosts中存放的目标主机的ip或域名，ansible连接过去后默认采用的是/usr/bin/python执行命令，可能会出现目标主机未安装python2，只安装了python3导致没有/usr/bin/python,执行ansible命令失败，有两种解决方法：</p>
+<p> A. 在目标主机生成/usr/bin/python软连接，可通过安装python2或者连接python3到/usr/bin/python</p>
+<p> B. 修改hosts文件,为目标主机指定固定的python版本:</p>
+<pre><code>[Client]
+192.168.0.170 ansible_python_interpreter=/usr/local/bin/python3
+192.168.0.174 ansible_python_interpreter=/usr/local/bin/python3
+192.168.0.176 ansible_python_interpreter=/usr/local/bin/python3
+192.168.0.172 ansible_python_interpreter=/usr/local/bin/python3
+192.168.0.178 ansible_python_interpreter=/usr/local/bin/python3
+</code></pre></li>
+<li><p>批量分发密钥</p>
+<p> 批量分发密钥脚本内容如下:</p>
+<pre><code>push_key.yml
+---
+- hosts: all
+  remote_user: &quot;{{ user }}&quot;
+
+  tasks:
+    - name: ensure path exist
+      file: path={{ ansible_env.HOME }}/.ssh state=directory owner={{ user }} group={{ user }} mode=0700
+
+    - name: push ssh-key
+      copy: src=authorized_keys dest={{ ansible_env.HOME }}/.ssh/authorized_keys owner={{ user }} group={{ user }} mode=0644
+</code></pre><p> 调用方式：ansible-playbook push_key.yml -e “user=bigdata” –ask-pass<br> 注意这里参数–ask-pas(简写-k)s为用户对应的密码，不是sudo密码，sudo密码参数是–ask-become-pass(或者-K)</p>
+</li>
+<li><p>source</p>
+<p> ansible-playbook脚本中shell和command模块可以执行shell命令，但source命令会执行失败，报没有该命令，目前还未找到解决方法。</p>
+</li>
+<li><p>pip问题</p>
+<p> 这个不算ansible的坑，只是在执行ansible批量安装时发现的。<br> ubuntu安装pip，网上一堆教程说采用apt-get install python-pip，但是这种方法安装的pip版本是8.1.1，用这个pip安装其他包有可能会报版本过低，一般会采用pip install –upgrade pip更新pip，然后pip就有可能报一些奇奇怪怪的错误::</p>
+<pre><code>Traceback (most recent call last):
+    File &quot;/usr/local/bin/pip&quot;, line 7, in &lt;module&gt;
+    from pip._internal import main
+ImportError: No module named _internal
+</code></pre><p> 建议不要采用上述方法安装pip，如果已经使用了上面的方法，请先卸载pip::</p>
+<pre><code>apt-get remove python-pip
+</code></pre><p> 正确安装pip的方法如下::</p>
+<pre><code>wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip install --upgrade pip
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qq77moon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Ansible基础知识"><span class="nav-number">1.</span> <span class="nav-text">1.Ansible基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Ansible安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Ansible安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-Mac下安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 Mac下安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-Ubuntu下安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Ubuntu下安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Ansible配置"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Ansible配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Ansible踩过的坑"><span class="nav-number">2.</span> <span class="nav-text">2.Ansible踩过的坑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qq77moon</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
