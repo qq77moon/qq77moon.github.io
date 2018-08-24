@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
 <meta property="og:description" content="1. 服务端安装1.1 基础环境部署部署Zabbix需要安装Apache、MySQL和PHP，本次部署的服务器Ubuntu16.04，php只有7.0而没有5.0，除了安装php7外还要安装php7额外支持的一些包。这个问题之前部署时导致页面一直无法显示，后面部署一定要注意: sudo apt-get install apache2  sudo apt-get install mysql-serv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-24T08:54:11.000Z">
+<meta property="og:updated_time" content="2018-08-24T09:04:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix监控部署">
 <meta name="twitter:description" content="1. 服务端安装1.1 基础环境部署部署Zabbix需要安装Apache、MySQL和PHP，本次部署的服务器Ubuntu16.04，php只有7.0而没有5.0，除了安装php7外还要安装php7额外支持的一些包。这个问题之前部署时导致页面一直无法显示，后面部署一定要注意: sudo apt-get install apache2  sudo apt-get install mysql-serv">
@@ -362,7 +362,7 @@ sudo dpkg -i zabbix-release_3.5-1+trusty_all.deb
 sudo apt-get update
 </code></pre><h2 id="1-3-安装Zabbix服务端和依赖包"><a href="#1-3-安装Zabbix服务端和依赖包" class="headerlink" title="1.3 安装Zabbix服务端和依赖包"></a>1.3 安装Zabbix服务端和依赖包</h2><p>安装命令如下：</p>
 <pre><code>sudo apt-get install zabbix-server-mysql zabbix-frontend-php
-</code></pre><p>这里在安装zabbix-server-mysql时一直无法通过，一直报libmysqlclient18 (&gt;= 5.5.24+dfsg-1)无法找到。这是由于系统为ubuntu16.04，默认安装mysql时安装的是mysql 5.7版本，这个版本安装的libmysqlclient软件包是20的版本，无法匹配zabbix需要的18版本。为了不修改mysql版本，需要手工安装libmysqlclient18，对应的软件包可在<a href="http://repo.mysql.com/网站查看，libmysqlclient18在mysql" target="_blank" rel="noopener">http://repo.mysql.com/网站查看，libmysqlclient18在mysql</a> 5.6中，一定要注意系统版本和位数：</p>
+</code></pre><p>这里在安装zabbix-server-mysql时一直无法通过，一直报libmysqlclient18 (&gt;= 5.5.24+dfsg-1)无法找到。这是由于系统为ubuntu16.04，默认安装mysql时安装的是mysql 5.7版本，这个版本安装的libmysqlclient软件包是20的版本，无法匹配zabbix需要的18版本。为了不修改mysql版本，需要手工安装libmysqlclient18，对应的软件包可在 <a href="http://repo.mysql.com/" target="_blank" rel="noopener">http://repo.mysql.com/</a> 网站查看，libmysqlclient18在mysql 5.6中，一定要注意系统版本和位数：</p>
 <pre><code>wget http://repo.mysql.com/apt/ubuntu/pool/mysql-5.6/m/mysql-community/libmysqlclient18_5.6.41-1ubuntu14.04_amd64.deb
 sudo dpkg -i libmysqlclient18_5.6.41-1ubuntu14.04_amd64.deb
 </code></pre><p>可以使用如下命令查看是否安装成功：</p>
