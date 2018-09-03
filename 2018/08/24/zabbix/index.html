@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
 <meta property="og:description" content="1. 服务端安装1.1 基础环境部署部署Zabbix需要安装Apache、MySQL和PHP，本次部署的服务器Ubuntu16.04，php只有7.0而没有5.0，除了安装php7外还要安装php7额外支持的一些包。这个问题之前部署时导致页面一直无法显示，后面部署一定要注意: sudo apt-get install apache2  sudo apt-get install mysql-serv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-24T09:05:27.000Z">
+<meta property="og:updated_time" content="2018-09-03T01:09:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix监控部署">
 <meta name="twitter:description" content="1. 服务端安装1.1 基础环境部署部署Zabbix需要安装Apache、MySQL和PHP，本次部署的服务器Ubuntu16.04，php只有7.0而没有5.0，除了安装php7外还要安装php7额外支持的一些包。这个问题之前部署时导致页面一直无法显示，后面部署一定要注意: sudo apt-get install apache2  sudo apt-get install mysql-serv">
@@ -395,7 +395,7 @@ sudo /etc/init.d/apache2 restart
 DBHost=localhost 
 DBName=zabbix 
 DBUser=zabbix 
-DBPassword=zabbix
+DBPassword=password
 
 sudo /etc/init.d/zabbix-server restart
 </code></pre><h1 id="2-客户端安装"><a href="#2-客户端安装" class="headerlink" title="2. 客户端安装"></a>2. 客户端安装</h1><h2 id="2-1-客户端安装"><a href="#2-1-客户端安装" class="headerlink" title="2.1 客户端安装"></a>2.1 客户端安装</h2><p>安装：</p>
@@ -404,10 +404,10 @@ sudo /etc/init.d/zabbix-server restart
 <pre><code>注意：zabbix_agentd.conf 是客户端的配置文件，这里配置的目的是对自身进行监控，此处的192.168.0.192是服务端的IP
 
 vim /etc/zabbix/zabbix_agentd.conf
-Server=192.168.0.192        # 监控服务器的IP
+Server=xx.xx.xx.xx        # 监控服务器的IP
 ListenPort=10050            # 监听的端口
 StartAgents=1               # 启动的客户端进程
-ServerActive=192.168.0.192：10051  # 主动模式下的监控服务器IP（主动模式必须）
+ServerActive=xx.xx.xx.xx:10051  # 主动模式下的监控服务器IP（主动模式必须）
 /tmp/zabbix_agentd.log                       #修改日志路径
 UnsafeUserParameters=1                    #默认是不启用自定义脚本功能的，需开启
 Hostname=zabbix.com         #监控服务器的名称，大小写敏感（主动模式必须），邮件报警时需要用到，保证各客户端唯一，在zabbix中主机配置时的主机名称
@@ -415,7 +415,7 @@ Hostname=zabbix.com         #监控服务器的名称，大小写敏感（主动
 <pre><code>/etc/init.d/zabbix-agent start
 </code></pre><h2 id="2-2-添加开机自启动"><a href="#2-2-添加开机自启动" class="headerlink" title="2.2 添加开机自启动"></a>2.2 添加开机自启动</h2><p>在开机自启动文件/etc/rc.local里添加如下内容：</p>
 <pre><code>/etc/init.d/zabbix-agent start
-</code></pre><h1 id="3-Web端访问zabbix"><a href="#3-Web端访问zabbix" class="headerlink" title="3. Web端访问zabbix"></a>3. Web端访问zabbix</h1><p>访问地址：<a href="http://192.168.0.192/zabbix" target="_blank" rel="noopener">http://192.168.0.192/zabbix</a> #http://服务器地址或域名/zabbix<br>默认用户名：Admin 默认密码：zabbix</p>
+</code></pre><h1 id="3-Web端访问zabbix"><a href="#3-Web端访问zabbix" class="headerlink" title="3. Web端访问zabbix"></a>3. Web端访问zabbix</h1><p>访问地址：<a href="http://xx.xx.xx.xx/zabbix" target="_blank" rel="noopener">http://xx.xx.xx.xx/zabbix</a> #http://服务器地址或域名/zabbix<br>默认用户名：Admin 默认密码：zabbix</p>
 
       
     </div>
@@ -452,8 +452,8 @@ Hostname=zabbix.com         #监控服务器的名称，大小写敏感（主动
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/23/ansible/" rel="next" title="Ansible安装及部分坑">
-                <i class="fa fa-chevron-left"></i> Ansible安装及部分坑
+              <a href="/2018/08/23/gitlab/" rel="next" title="gitlab安装与邮箱配置">
+                <i class="fa fa-chevron-left"></i> gitlab安装与邮箱配置
               </a>
             
           </div>

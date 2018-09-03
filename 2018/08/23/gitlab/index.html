@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
 <meta property="og:description" content="1.docker由于一步步安装gitlab比较麻烦，这里推荐通过docker部署gitlab 1.1 开始安装由于apt官方库里的docker版本可能比较旧，所以先卸载可能存在的旧版本: sudo apt-get remove docker docker-engine docker-ce docker.io 更新apt包索引: sudo apt-get update 安装以下包以使apt可以通过H">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-24T02:51:29.000Z">
+<meta property="og:updated_time" content="2018-09-03T01:01:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gitlab安装与邮箱配置">
 <meta name="twitter:description" content="1.docker由于一步步安装gitlab比较麻烦，这里推荐通过docker部署gitlab 1.1 开始安装由于apt官方库里的docker版本可能比较旧，所以先卸载可能存在的旧版本: sudo apt-get remove docker docker-engine docker-ce docker.io 更新apt包索引: sudo apt-get update 安装以下包以使apt可以通过H">
@@ -375,7 +375,7 @@
 <pre><code>sudo systemctl enable docker
 </code></pre><h1 id="2-gitlab"><a href="#2-gitlab" class="headerlink" title="2.gitlab"></a>2.gitlab</h1><h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><p>安装命令:</p>
 <pre><code>sudo docker run --detach \
-    --hostname 45.40.248.73 \
+    --hostname xxx.xxx.xxx.xxx \
     --publish 10443:443 --publish 10080:80 --publish 10022:22 \
     --name gitlab \
     --restart always \
@@ -399,14 +399,14 @@ vim /etc/gitlab/gitlab.rb
 <pre><code>gitlab_rails[&apos;smtp_enable&apos;] = true
 gitlab_rails[&apos;smtp_address&apos;] = &quot;smtp.exmail.qq.com&quot;
 gitlab_rails[&apos;smtp_port&apos;] = 465
-gitlab_rails[&apos;smtp_user_name&apos;] = &quot;XXXXX@shandudata.com&quot;
+gitlab_rails[&apos;smtp_user_name&apos;] = &quot;XXXXX@xxxxx.com&quot;
 gitlab_rails[&apos;smtp_password&apos;] = &quot;XXXXX&quot;
-gitlab_rails[&apos;smtp_domain&apos;] = &quot;shandudata.com&quot;
+gitlab_rails[&apos;smtp_domain&apos;] = &quot;xxxxx.com&quot;
 gitlab_rails[&apos;smtp_authentication&apos;] = &quot;login&quot;
 gitlab_rails[&apos;smtp_enable_starttls_auto&apos;] = true
 gitlab_rails[&apos;smtp_tls&apos;] = true
 
-gitlab_rails[&apos;gitlab_email_from&apos;] = &apos;XXXXX@shandudata.com&apos;
+gitlab_rails[&apos;gitlab_email_from&apos;] = &apos;XXXXX@xxxxx.com&apos;
 </code></pre><p>修改完后需要重新加载配置:</p>
 <pre><code>gitlab-ctl reconfigure
 gitlab-ctl restart
@@ -414,7 +414,7 @@ gitlab-ctl restart
 <pre><code>gitlab-rails console
 ActionMailer::Base.delivery_method
 ActionMailer::Base.smtp_settings
-Notify.test_email(&apos;xxx@shandudata&apos;, &apos;Message Subject&apos;, &apos;Message Body&apos;).deliver_now
+Notify.test_email(&apos;xxx@xxxxx&apos;, &apos;Message Subject&apos;, &apos;Message Body&apos;).deliver_now
 </code></pre>
       
     </div>
@@ -449,14 +449,18 @@ Notify.test_email(&apos;xxx@shandudata&apos;, &apos;Message Subject&apos;, &apos
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/23/ansible/" rel="next" title="Ansible安装及部分坑">
+                <i class="fa fa-chevron-left"></i> Ansible安装及部分坑
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/23/ansible/" rel="prev" title="Ansible安装及部分坑">
-                Ansible安装及部分坑 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/24/zabbix/" rel="prev" title="Zabbix监控部署">
+                Zabbix监控部署 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

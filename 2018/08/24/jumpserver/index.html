@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
 <meta property="og:description" content="1 Jumpserver安装安装过程见jumpserver官网文档 jumpserver官方安装文档 个人虚拟环境配置采用virtualenvwrapper + pyenv 2.Jumpserver踩过的坑 Web页面显示没有正确渲染  通过Nginx代理jumpserver，查看Nginx后台日志报错如下: 2018/07/30 09:35:47 [error] 54615#54615: *4">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-24T02:57:20.000Z">
+<meta property="og:updated_time" content="2018-09-03T01:07:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jumpserver安装与坑">
 <meta name="twitter:description" content="1 Jumpserver安装安装过程见jumpserver官网文档 jumpserver官方安装文档 个人虚拟环境配置采用virtualenvwrapper + pyenv 2.Jumpserver踩过的坑 Web页面显示没有正确渲染  通过Nginx代理jumpserver，查看Nginx后台日志报错如下: 2018/07/30 09:35:47 [error] 54615#54615: *4">
@@ -362,7 +362,7 @@
 a/static/css/plugins/toastr/toastr.min.css&quot; failed (13: Permission denied), clie
 nt: 192.168.0.101, server: _, request: &quot;GET /static/css/plugins/toastr/toastr.mi
 n.css HTTP/1.1&quot;, host: &quot;192.168.0.100&quot;, referrer: &quot;http://192.168.0.100/&quot;
-</code></pre><p> 原因为nginx默认配置中采用的是www-data用户启动，会造成读取jumpserver静态文件时没有权限，页面无法加载静态文件而报错。修改nginx默认配置文件／etc/nginx/nginx.conf开头使用正确的用户:</p>
+</code></pre><p> 原因为nginx默认配置中采用的是www-data用户启动，会造成读取jumpserver静态文件时没有权限，页面无法加载静态文件而报错。修改nginx默认配置文件/etc/nginx/nginx.conf开头使用正确的用户:</p>
 <pre><code>user root;
 worker_processes auto;
 #pid /run/nginx.pid;

@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/27/jumpserver_use_document/pic8.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/27/jumpserver_use_document/pic9.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/27/jumpserver_use_document/pic10.png">
-<meta property="og:updated_time" content="2018-08-27T08:24:16.000Z">
+<meta property="og:updated_time" content="2018-09-03T01:07:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jumpserver使用手册">
 <meta name="twitter:description" content="1. 前言为了规范主机登录，管理主机操作，后续的服务器操作请全部通过jumpserver执行。所有的主机操作命令都会后台记录，请大家一定注意命令安全。 2. Web登录jumpserver服务web地址为: https://jumpserver.shandudata.com/ ，登录用户名为个人姓名拼音，密码之前已经通过个人邮箱发送过去，如果忘记密码或者找不到邮件请联系我发送重制密码邮件。 登录页">
@@ -374,18 +374,18 @@
 <p>web终端菜单会进入服务器登录界面，左侧为个人能够登录的资产列表，点击需要登录的主机，右侧会正常登录主机，然后可以和term终端一样操作主机了。</p>
 <p><img src="/2018/08/27/jumpserver_use_document/pic4.png" alt="jumpserver使用手册"></p>
 <h1 id="3-ssh登录"><a href="#3-ssh登录" class="headerlink" title="3. ssh登录"></a>3. ssh登录</h1><p>如果觉得登录web页面麻烦，也可以直接在自己的term终端中使用ssh登录主机。操作命令如下：</p>
-<p><strong><code>ssh -p2222 fengqiqi@jumpserver.shandata.com</code></strong></p>
+<p><strong><code>ssh -p2222 user@jumpserver.xxx.com</code></strong></p>
 <p>或者</p>
-<p><strong><code>ssh -p2222 fengqiqi@45.40.248.73</code></strong></p>
-<p>请注意，将上面的fenqiqi换成你自己的jumpserver个人账号，然后会提示输入密码，密码也是jumpserver用户的密码。</p>
+<p><strong><code>ssh -p2222 user@jumpserver服务器的ip</code></strong></p>
+<p>请注意，将上面的user换成你自己的jumpserver个人账号，然后会提示输入密码，密码也是jumpserver用户的密码。</p>
 <p><img src="/2018/08/27/jumpserver_use_document/pic5.png" alt="jumpserver使用手册"></p>
 <p>成功进入跳板机界面后按照上面提示输入操作命令，一般可以先输入p查看自己能够登录的资产列表，然后输入需要登录主机的id或ip，如果由多个用户的主机还会提示选择用户。成功登录主机后就可以正常操作主机了。</p>
 <p><img src="/2018/08/27/jumpserver_use_document/pic6.png" alt="jumpserver使用手册"></p>
 <h1 id="4-sftp传输"><a href="#4-sftp传输" class="headerlink" title="4. sftp传输"></a>4. sftp传输</h1><p>如果有文件传输的需求，可以通过在term终端中通过sftp命令执行，命令如下：</p>
-<p><strong><code>sftp -P2222 fengqiqi@jumpserver.shandudata.com</code></strong></p>
+<p><strong><code>sftp -P2222 user@jumpserver.xxx.com</code></strong></p>
 <p>或者</p>
-<p><strong><code>sftp -P2222 fengqiqi@45.40.248.73</code></strong></p>
-<p>请注意，<code>上面的P是大写的</code>，将上面的fenqiqi换成你自己的jumpserver个人账号，然后会提示输入密码，密码也是jumpserver用户的密码。</p>
+<p><strong><code>sftp -P2222 user@jumpserver服务器的ip</code></strong></p>
+<p>请注意，<code>上面的P是大写的</code>，将上面的user换成你自己的jumpserver个人账号，然后会提示输入密码，密码也是jumpserver用户的密码。</p>
 <p>成功进入跳板机后用ls可以显示主机列表，依次进入主机名、用户名，就成功进入主机目录。</p>
 <p><img src="/2018/08/27/jumpserver_use_document/pic7.png" alt="jumpserver使用手册"></p>
 <p>请注意，由于sftp无法切换应用用户，为了解决能登录所有主机的问题，采用的是jumpserver普通用户去登录主机，进入的主机目录是<code>/tmp目录</code>（默认所有主机的tmp目录是全权限的），其他目录没有权限操作，get和put文件都是在/tmp目录下进行的，所以如果需要下载文件，请先将文件拷贝到tmp目录，上传文件上传后请从tmp目录下拷贝到自己想要的目录。</p>
@@ -396,9 +396,9 @@
 
 from fabric import task, Connection
 
-conn = Connection(host=&apos;deploy@10.6.0.170&apos;, forward_agent=True, connect_timeout=10000,
-              connect_kwargs={&apos;password&apos;: &apos;sddata-deploy&apos;},
-              gateway=Connection(&apos;fengqiqi@45.40.248.73:3333&apos;, connect_kwargs={&apos;password&apos;: &apos;XXXXXXXX&apos;},
+conn = Connection(host=&apos;deploy@xx.xx.xx.xx&apos;, forward_agent=True, connect_timeout=10000,
+              connect_kwargs={&apos;password&apos;: &apos;xxxxx&apos;},
+              gateway=Connection(&apos;user@jumpserver服务器ip:3333&apos;, connect_kwargs={&apos;password&apos;: &apos;XXXXXXXX&apos;},
                                  connect_timeout=10000))
 
 @task
@@ -406,8 +406,8 @@ def touchfile(c):
     conn.run(&apos;touch fff.txt&apos;)
 </code></pre><p>需要实现fabric通过jumpserver只需要注意以下几点：</p>
 <p>1、在Connection中添加gateway选项，具体如下：</p>
-<p><strong><code>gateway=Connection(‘fengqiqi@45.40.248.73:3333’, connect_kwargs={‘password’: ‘xxxxxxx’})</code></strong></p>
-<p>请将上面的fengqiqi更换城自己的jumpserver用户名，password后面为jumpserver密码。</p>
+<p><strong><code>gateway=Connection(‘user@jumpserver服务器ip:3333’, connect_kwargs={‘password’: ‘xxxxxxx’})</code></strong></p>
+<p>请将上面的user更换城自己的jumpserver用户名，password后面为jumpserver密码。</p>
 <p>2、host为需要执行操作的目标主机ip，如果该主机没有外网ip，请换成该主机的openvpn的ip，如果该主机没有搭建openvpn请联系我。</p>
 <p>然后按照正常的fabric脚本执行即可：</p>
 <p><img src="/2018/08/27/jumpserver_use_document/pic9.png" alt="jumpserver使用手册"></p>

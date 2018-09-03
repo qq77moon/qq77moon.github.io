@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/08/24/SSL/let%27s_encrypt.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/24/SSL/dns_txt.png">
-<meta property="og:updated_time" content="2018-08-24T03:13:37.000Z">
+<meta property="og:updated_time" content="2018-09-03T01:07:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取Let&#39;s Encrypt免费SSL证书">
 <meta name="twitter:description" content="1.SSL证书1.1 获取证书获取Let’s Encrypt免费SSL证书，首先获取脚本: git clone https://github.com/letsencrypt/letsencrypt cd letsencrypt chmod a+x certbot-auto 使用Certbot客户端申请证书(注意，有可能ngixn启动导致80端口被占用无法获取，建议先停止nginx): ./cert">
@@ -360,20 +360,20 @@
 cd letsencrypt
 chmod a+x certbot-auto
 </code></pre><p>使用Certbot客户端申请证书(注意，有可能ngixn启动导致80端口被占用无法获取，建议先停止nginx):</p>
-<pre><code>./certbot-auto certonly  -d &quot;*.shandudata.com&quot; --manual --preferred-challenges dns-01  --server https://acme-v02.api.letsencrypt.org/directory
+<pre><code>./certbot-auto certonly  -d &quot;*.xxxxx.com&quot; --manual --preferred-challenges dns-01  --server https://acme-v02.api.letsencrypt.org/directory
 </code></pre><p>命令行执行结果如下，根据提示输入信息:</p>
 <p><img src="/2018/08/24/SSL/let&#39;s_encrypt.png" alt="根据提示输入信息"></p>
 <p>执行到DNS添加解析记录时先暂时不要回车，需要在DNS中添加一条TXT的解析记录。由于我们的服务器是腾讯云线上服务器，请登录腾讯云后台控制台，在”域名服务”——“我的域名”中选择本次证书对应的域名服务器（本方案中是shandudata.com），进入域名信息后选择域名解析，添加一条TXT的域名解析记录，主机记录和记录值填写上面对应的内容:</p>
 <p><img src="/2018/08/24/SSL/dns_txt.png" alt="DNS添加TXT解析"></p>
-<p>添加完DNS解析后回车继续执行，就能在/etc/letsencrypt/live/shdandudata.com中看到生成的证书和密钥。</p>
+<p>添加完DNS解析后回车继续执行，就能在/etc/letsencrypt/live/xxxxx.com中看到生成的证书和密钥。</p>
 <h2 id="3-2-nginx配置证书"><a href="#3-2-nginx配置证书" class="headerlink" title="3.2 nginx配置证书"></a>3.2 nginx配置证书</h2><p>在nginx配置文件中添加对上面生成的文件的引用就能使用ssl证书，如下是例子:</p>
 <pre><code>server {
     listen 443 ssl;
-    server_name jumpserver.shandudata.com;
+    server_name xxx.xxxxx.com;
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/shdandudata.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/shdandudata.com/privkey.pem;
-    ssl_trusted_certificate  /etc/letsencrypt/live/shdandudata.com/chain.pem;
+    ssl_certificate /etc/letsencrypt/live/xxxxx.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/xxxxx.com/privkey.pem;
+    ssl_trusted_certificate  /etc/letsencrypt/live/xxxxx.com/chain.pem;
     ssl_session_timeout 5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL;
