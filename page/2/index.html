@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ansible," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
-<meta name="keywords" content="ansible">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ansible安装及部分坑">
-<meta property="og:url" content="http://yoursite.com/2018/08/23/ansible/index.html">
+<meta name="description" content="人生不止有眼前的苟且，还有吃和睡觉">
+<meta property="og:type" content="website">
+<meta property="og:title" content="qq77moon&#39;s 花草后院">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
-<meta property="og:description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
+<meta property="og:description" content="人生不止有眼前的苟且，还有吃和睡觉">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-03T01:01:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ansible安装及部分坑">
-<meta name="twitter:description" content="1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible: ruby -e &amp;quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew update br">
+<meta name="twitter:title" content="qq77moon&#39;s 花草后院">
+<meta name="twitter:description" content="人生不止有眼前的苟且，还有吃和睡觉">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/23/ansible/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title>Ansible安装及部分坑 | qq77moon's 花草后院</title>
+  <title>qq77moon's 花草后院</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -280,7 +279,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ansible安装及部分坑</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/ansible/" itemprop="url">Ansible安装及部分坑</a></h1>
         
 
         <div class="post-meta">
@@ -352,56 +353,19 @@
       
 
       
-        <h1 id="1-Ansible基础知识"><a href="#1-Ansible基础知识" class="headerlink" title="1.Ansible基础知识"></a>1.Ansible基础知识</h1><h2 id="1-1-Ansible安装"><a href="#1-1-Ansible安装" class="headerlink" title="1.1 Ansible安装"></a>1.1 Ansible安装</h2><h3 id="1-1-1-Mac下安装"><a href="#1-1-1-Mac下安装" class="headerlink" title="1.1.1 Mac下安装"></a>1.1.1 Mac下安装</h3><p>在Mac系统中安装Homebrew，之后使用brew安装ansible:</p>
-<pre><code>ruby -e &quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-brew update
-brew install Ansible
-</code></pre><h3 id="1-1-2-Ubuntu下安装"><a href="#1-1-2-Ubuntu下安装" class="headerlink" title="1.1.2 Ubuntu下安装"></a>1.1.2 Ubuntu下安装</h3><p>为Ubuntu获取Ansible的最佳方法是将项目的PPA（个人包存档）添加到系统中:</p>
-<pre><code>sudo apt-add-repository ppa:ansible/ansible
-</code></pre><p>接下来刷新系统的包索引并安装ansible:</p>
-<pre><code>sudo apt-get update
-sudo apt-get install ansible
-</code></pre><h2 id="1-2-Ansible配置"><a href="#1-2-Ansible配置" class="headerlink" title="1.2 Ansible配置"></a>1.2 Ansible配置</h2><h1 id="2-Ansible踩过的坑"><a href="#2-Ansible踩过的坑" class="headerlink" title="2.Ansible踩过的坑"></a>2.Ansible踩过的坑</h1><ol>
-<li><p>目标主机python版本</p>
-<p> 在ansible的配置文件hosts中存放的目标主机的ip或域名，ansible连接过去后默认采用的是/usr/bin/python执行命令，可能会出现目标主机未安装python2，只安装了python3导致没有/usr/bin/python,执行ansible命令失败，有两种解决方法：</p>
-<p> A. 在目标主机生成/usr/bin/python软连接，可通过安装python2或者连接python3到/usr/bin/python</p>
-<p> B. 修改hosts文件,为目标主机指定固定的python版本:</p>
-<pre><code>[Client]
-192.168.0.170 ansible_python_interpreter=/usr/local/bin/python3
-</code></pre></li>
-<li><p>批量分发密钥</p>
-<p> 批量分发密钥脚本内容如下:</p>
-<pre><code>push_key.yml
----
-- hosts: all
-  remote_user: &quot;{{ user }}&quot;
-
-  tasks:
-    - name: ensure path exist
-      file: path={{ ansible_env.HOME }}/.ssh state=directory owner={{ user }} group={{ user }} mode=0700
-
-    - name: push ssh-key
-      copy: src=authorized_keys dest={{ ansible_env.HOME }}/.ssh/authorized_keys owner={{ user }} group={{ user }} mode=0644
-</code></pre><p> 调用方式：ansible-playbook push_key.yml -e “user=bigdata” –ask-pass<br> 注意这里参数–ask-pas(简写-k)s为用户对应的密码，不是sudo密码，sudo密码参数是–ask-become-pass(或者-K)</p>
-</li>
-<li><p>source</p>
-<p> ansible-playbook脚本中shell和command模块可以执行shell命令，但source命令会执行失败，报没有该命令，目前还未找到解决方法。</p>
-</li>
-<li><p>pip问题</p>
-<p> 这个不算ansible的坑，只是在执行ansible批量安装时发现的。<br> ubuntu安装pip，网上一堆教程说采用apt-get install python-pip，但是这种方法安装的pip版本是8.1.1，用这个pip安装其他包有可能会报版本过低，一般会采用pip install –upgrade pip更新pip，然后pip就有可能报一些奇奇怪怪的错误::</p>
-<pre><code>Traceback (most recent call last):
-    File &quot;/usr/local/bin/pip&quot;, line 7, in &lt;module&gt;
-    from pip._internal import main
-ImportError: No module named _internal
-</code></pre><p> 建议不要采用上述方法安装pip，如果已经使用了上面的方法，请先卸载pip::</p>
-<pre><code>apt-get remove python-pip
-</code></pre><p> 正确安装pip的方法如下::</p>
-<pre><code>wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
-pip install --upgrade pip
-</code></pre></li>
-</ol>
-
+        
+          
+          1.Ansible基础知识1.1 Ansible安装1.1.1 Mac下安装在Mac系统中安装Homebrew，之后使用brew安装ansible:
+ruby -e &quot;$(curl --insecure -fsSL https://raw.githubusercontent.com/Hom
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/23/ansible/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -416,36 +380,14 @@ pip install --upgrade pip
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ansible/" rel="tag"># ansible</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/23/gitlab/" rel="prev" title="gitlab安装与邮箱配置">
-                gitlab安装与邮箱配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -455,11 +397,14 @@ pip install --upgrade pip
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -467,10 +412,6 @@ pip install --upgrade pip
 
 
           
-
-  
-
-
 
         </div>
         
@@ -491,17 +432,8 @@ pip install --upgrade pip
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -587,22 +519,6 @@ pip install --upgrade pip
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Ansible基础知识"><span class="nav-number">1.</span> <span class="nav-text">1.Ansible基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Ansible安装"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Ansible安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-Mac下安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 Mac下安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-Ubuntu下安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Ubuntu下安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Ansible配置"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Ansible配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Ansible踩过的坑"><span class="nav-number">2.</span> <span class="nav-text">2.Ansible踩过的坑</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -736,10 +652,6 @@ pip install --upgrade pip
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
