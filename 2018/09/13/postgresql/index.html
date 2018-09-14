@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic2.png">
-<meta property="og:updated_time" content="2018-09-14T01:52:42.000Z">
+<meta property="og:updated_time" content="2018-09-14T01:55:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker的postgresql主从复制部署">
 <meta name="twitter:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署主服务器利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署: 1234567891011postgres:  image: postgres  container_na">
@@ -433,7 +433,7 @@
 <h3 id="导出格式"><a href="#导出格式" class="headerlink" title="导出格式"></a>导出格式</h3><p>参数为<code>-F</code> ,决定导出的文件是哪种格式，默认为文本格式(p)</p>
 <ol>
 <li><p>默认格式</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pg_dump -Fp 数据库名 &gt; 备份文件名</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pg_dump -Fp 数据库名 &gt; 备份文件名</span><br></pre></td></tr></table></figure>
 <p> 导出的文件格式为文本格式，恢复时可以直接用psql恢复</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql 数据库名 &lt; 备份文件名</span><br></pre></td></tr></table></figure>
 </li>
@@ -498,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/13/docker_ce/" rel="next" title="Ubuntu安装部署Docker CE">
-                <i class="fa fa-chevron-left"></i> Ubuntu安装部署Docker CE
+              <a href="/2018/09/05/jumpserver_utf8/" rel="next" title="Jumpserver命令记录入库失败处理">
+                <i class="fa fa-chevron-left"></i> Jumpserver命令记录入库失败处理
               </a>
             
           </div>
@@ -507,6 +507,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/13/docker_ce/" rel="prev" title="Ubuntu安装部署Docker CE">
+                Ubuntu安装部署Docker CE <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
