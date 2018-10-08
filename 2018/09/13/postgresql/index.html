@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic2.png">
-<meta property="og:updated_time" content="2018-09-14T01:55:33.000Z">
+<meta property="og:updated_time" content="2018-10-08T11:16:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker的postgresql主从复制部署">
 <meta name="twitter:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署主服务器利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署: 1234567891011postgres:  image: postgres  container_na">
@@ -370,7 +370,7 @@
 <p> 如果显示vi命令无法找到，需要安装vim</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
 <p> 安装成功之后，再次修改 pg_hba.conf 文件，进入最后部分，添加如下：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">host    replica     all            192.168.0.2/32            md5</span><br><span class="line"># 第2列是主从同步的用户</span><br><span class="line"># 第3列是账号名，可以修改成replicator</span><br><span class="line"># 第4列的格式必须是ip/子网掩码</span><br><span class="line"># 第5列建议改成MD5加密</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">host    replication     replica          192.168.0.2/32            md5</span><br><span class="line"># 第3列是主从同步的用户，可以修改成replica</span><br><span class="line"># 第4列的格式必须是ip/子网掩码</span><br><span class="line"># 第5列建议改成MD5加密</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改postgresql.conf文件</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim postgresql.conf</span><br><span class="line">    listen_addresses = &apos;*&apos;</span><br><span class="line"></span><br><span class="line">    #下面是9版本需要修改的地方，10版本不需要</span><br><span class="line">        wal_level = replica     #9的低级版本不支持replica的话，请换成hot_standby</span><br><span class="line">        archive_mode = on</span><br><span class="line">        archive_command = &apos;test ! -f $&#123;PGDATA&#125;/%f &amp;&amp; cp %p $&#123;PGDATA&#125;/%f&apos;</span><br><span class="line">        max_wal_senders = 10</span><br><span class="line">        hot_standby = on</span><br></pre></td></tr></table></figure>
