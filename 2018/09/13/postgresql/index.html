@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署主服务器利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署: 1234567891011postgres:  image: postgres  container_na">
+<meta name="description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署 附：Ubuntu16下直接安装postgresql 10 导入 PostgreSQL 包的 GPG 密钥12&amp;gt;wget -q https://www.postgresql.org/media/keys/AC">
 <meta name="keywords" content="docker,postgresql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于docker的postgresql主从复制部署">
 <meta property="og:url" content="http://yoursite.com/2018/09/13/postgresql/index.html">
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
-<meta property="og:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署主服务器利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署: 1234567891011postgres:  image: postgres  container_na">
+<meta property="og:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署 附：Ubuntu16下直接安装postgresql 10 导入 PostgreSQL 包的 GPG 密钥12&amp;gt;wget -q https://www.postgresql.org/media/keys/AC">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/postgresql/pic2.png">
-<meta property="og:updated_time" content="2018-10-08T11:16:21.000Z">
+<meta property="og:updated_time" content="2018-10-08T11:23:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于docker的postgresql主从复制部署">
-<meta name="twitter:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署主服务器利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署: 1234567891011postgres:  image: postgres  container_na">
+<meta name="twitter:description" content="背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。 环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库 安装部署 附：Ubuntu16下直接安装postgresql 10 导入 PostgreSQL 包的 GPG 密钥12&amp;gt;wget -q https://www.postgresql.org/media/keys/AC">
 <meta name="twitter:image" content="http://yoursite.com/2018/09/13/postgresql/pic1.png">
 
 
@@ -357,7 +357,17 @@
       
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。</p>
 <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>192.168.0.1 部署主数据库<br>192.168.0.2 部署从数据库</p>
-<h1 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h1><h2 id="主服务器"><a href="#主服务器" class="headerlink" title="主服务器"></a>主服务器</h2><p>利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署:</p>
+<h1 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h1><blockquote>
+<p>附：Ubuntu16下直接安装postgresql 10</p>
+<p>导入 PostgreSQL 包的 GPG 密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O  -  | sudo apt-key add  -</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>将存储库添加到系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;sudo sh -c&apos;echo“deb http://apt.postgresql.org/pub/repos/apt/`lsb_release -cs`-pgdg main &gt;&gt; &gt;&gt; /etc/apt/sources.list.d/pgdg.list “</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>执行更新与安装数据库命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;sudo apt-get update </span><br><span class="line">&gt;sudo apt-get install postgresql postgresql-contri</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="主服务器"><a href="#主服务器" class="headerlink" title="主服务器"></a>主服务器</h2><p>利用docker搭建postgres服务器，为了快速部署采用的是docker-compose部署:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">postgres:</span><br><span class="line">  image: postgres</span><br><span class="line">  container_name: postgresql</span><br><span class="line">  environment:</span><br><span class="line">    POSTGRES_DB: xxx</span><br><span class="line">    POSTGRES_USER: postgres</span><br><span class="line">    POSTGRES_PASSWORD: xxx</span><br><span class="line">  ports:</span><br><span class="line">      - 5432:5432</span><br><span class="line">  volumes:</span><br><span class="line">    - /data/postgresql/data:/var/lib/postgresql/data</span><br></pre></td></tr></table></figure>
 <p>volumes: 将docker内的文件系统挂载到外挂盘，linux目录：/data/postgresql/data, docker容器对应的路径/var/lib/postgresql/data</p>
 <p>根据上面的配置文件新建容器并启动postgresql</p>
@@ -467,6 +477,7 @@
 </ul>
 <p>导出的文件格式为文本格式，恢复时可以直接用psql恢复</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql 数据库名 &lt; 备份文件名</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
