@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="gitlab,git," />
+  <meta name="keywords" content="zabbix,监控,Postgresql," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="gitlab服务器使用的一些命令记录 先fork一个项目，然后在本地clone项目  修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接： git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shanxxxx/xx.git git remote set-url origin ssh://git@gi">
-<meta name="keywords" content="gitlab,git">
+<meta name="description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
+<meta name="keywords" content="zabbix,监控,Postgresql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitlab使用过程中的一些命令记录">
-<meta property="og:url" content="http://yoursite.com/2018/08/27/gitlab_use/index.html">
+<meta property="og:title" content="Zabbix监控Postgresql配置">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/zabbix_postgresql/index.html">
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
-<meta property="og:description" content="gitlab服务器使用的一些命令记录 先fork一个项目，然后在本地clone项目  修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接： git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shanxxxx/xx.git git remote set-url origin ssh://git@gi">
+<meta property="og:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-03T01:02:34.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic2.png">
+<meta property="og:updated_time" content="2018-10-09T09:41:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gitlab使用过程中的一些命令记录">
-<meta name="twitter:description" content="gitlab服务器使用的一些命令记录 先fork一个项目，然后在本地clone项目  修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接： git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shanxxxx/xx.git git remote set-url origin ssh://git@gi">
+<meta name="twitter:title" content="Zabbix监控Postgresql配置">
+<meta name="twitter:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic1.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/27/gitlab_use/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/09/zabbix_postgresql/"/>
 
 
 
 
 
-  <title>gitlab使用过程中的一些命令记录 | qq77moon's 花草后院</title>
+  <title>Zabbix监控Postgresql配置 | qq77moon's 花草后院</title>
   
 
 
@@ -263,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/gitlab_use/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/zabbix_postgresql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qq77moon">
@@ -280,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">gitlab使用过程中的一些命令记录</h1>
+          <h1 class="post-title" itemprop="name headline">Zabbix监控Postgresql配置</h1>
         
 
         <div class="post-meta">
@@ -292,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T00:00:00+08:00">
-                2018-08-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">
+                2018-10-09
               </time>
             
 
@@ -315,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
                   </a>
                 </span>
 
@@ -352,29 +355,31 @@
       
 
       
-        <h1 id="gitlab服务器使用的一些命令记录"><a href="#gitlab服务器使用的一些命令记录" class="headerlink" title="gitlab服务器使用的一些命令记录"></a>gitlab服务器使用的一些命令记录</h1><ol>
-<li><p>先fork一个项目，然后在本地clone项目</p>
-</li>
-<li><p>修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接：</p>
-<pre><code>git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shanxxxx/xx.git
-git remote set-url origin ssh://git@git.xxxx.xx:10022/fengqiqi/xx.git
-</code></pre><p> upstream和origin的区别在于：</p>
-<blockquote>
-<p>upstream，你只可以拉取最新代码（即 git fetch ），从而保证你本地的仓库与源仓库同步。<br>origin，就是你自己的项目（自己创建的，或者 fork 的项目）你可以做 任何推拉操作（pull and push)。</p>
-</blockquote>
-</li>
-<li><p>同步原始项目，保持本地仓库和源仓库同步：</p>
-<pre><code>git pull --rebase upstream master
-</code></pre></li>
-<li><p>提交使amend会将该记录添加到上一个记录上</p>
-<pre><code>git commit --amend
-</code></pre></li>
-<li><p>撤回提交：</p>
-<pre><code>git reflog  # 查看提交
-git reset --hard {id} # 撤回到上个提交
-git reset --soft {id} # 撤回到上一个提交，并保留缓冲区数据（amend 之前未提交数据）
-</code></pre></li>
-</ol>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>使用zabbix自带的模版添加对Postgresql的监控。</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04.5 LTS<br>Zabbix 4.0<br>Postgresql 10.5</p>
+<h1 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h1><p>1、 安装libzbxpgsql</p>
+<p>需要先安装libzbxpgsql模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64/libzbxpgsql_1.1.0-1%2Btrusty_amd64.deb</span><br><span class="line">sudo apt-get install libc6 libconfig9</span><br><span class="line">sudo dpkg -i libzbxpgsql_1.1.0-1+trusty_amd64.deb</span><br></pre></td></tr></table></figure>
+<p>安装完会生成libzbxpgsql.so，一般在zabbix的模块文件夹中，可以通过下面查找</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -name libzbxpgsql.so</span><br><span class="line">/usr/lib/zabbix/modules/libzbxpgsql.so</span><br></pre></td></tr></table></figure>
+<p>2、 修改客户端配置文件</p>
+<p>修改客户端配置文件，加载libzbxpgsql模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/zabbix/zabbix_agentd.conf</span><br><span class="line"></span><br><span class="line">LoadModulePath=/usr/lib/zabbix/modules</span><br><span class="line">LoadModule=libzbxpgsql.so</span><br></pre></td></tr></table></figure>
+<p>修改完后可以检查模块是否加载，并重启客户端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zabbix_agentd -t pg.modver</span><br><span class="line">sudo /etc/init.d/zabbix_agent restart</span><br></pre></td></tr></table></figure>
+<p>3、 在Postgresql中添加监控用户</p>
+<p>为了安全起见，不要使用默认的postgres收集数据（超级用户），可以新建一个地权限的用户专门收集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">psql -h xx.xx.xx.xx -U postgres</span><br><span class="line"></span><br><span class="line">postgres=# CREATE ROLE zabbix WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE;</span><br><span class="line">CREATE ROLE</span><br><span class="line">postgres=# alter user zabbix with password &apos;zabbix&apos;;</span><br><span class="line">ALTER ROLE</span><br></pre></td></tr></table></figure>
+<p>为了实现免密登录，可以在root的根目录新建.pgpass文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim .pgpass</span><br><span class="line"></span><br><span class="line">127.0.0.1:5432:*:zabbix:zabbix</span><br></pre></td></tr></table></figure></p>
+<p>4、 导入监控模版</p>
+<p>从github上下载模版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cavaliercoder/libzbxpgsql.git</span><br></pre></td></tr></table></figure>
+<p>找到里边的 templates/Template_PostgreSQL_Server_3.0.xml</p>
+<p>在zabbix web页面”配置——模版——导入”手工导入模版</p>
+<p>5、 主机配置模版</p>
+<p>为需要监控的主机添加监控模版并配置postgresql宏</p>
+<p><img src="/2018/10/09/zabbix_postgresql/pic1.png" alt="zabbix监控pgsql"></p>
+<p><img src="/2018/10/09/zabbix_postgresql/pic2.png" alt="zabbix监控pgsql"></p>
 
       
     </div>
@@ -392,9 +397,11 @@ git reset --soft {id} # 撤回到上一个提交，并保留缓冲区数据（am
       
         <div class="post-tags">
           
-            <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+            <a href="/tags/zabbix/" rel="tag"># zabbix</a>
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/监控/" rel="tag"># 监控</a>
+          
+            <a href="/tags/Postgresql/" rel="tag"># Postgresql</a>
           
         </div>
       
@@ -407,8 +414,8 @@ git reset --soft {id} # 撤回到上一个提交，并保留缓冲区数据（am
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/27/jumpserver_use_document/" rel="next" title="Jumpserver使用手册">
-                <i class="fa fa-chevron-left"></i> Jumpserver使用手册
+              <a href="/2018/09/13/postgresql/" rel="next" title="基于docker的postgresql主从复制部署">
+                <i class="fa fa-chevron-left"></i> 基于docker的postgresql主从复制部署
               </a>
             
           </div>
@@ -417,8 +424,8 @@ git reset --soft {id} # 撤回到上一个提交，并保留缓冲区数据（am
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/04/jenkins_rever_proxy/" rel="prev" title="Jenkins反向代理设置有误">
-                Jenkins反向代理设置有误 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/09/zabbix_mysql/" rel="prev" title="Zabbix监控Mysql配置">
+                Zabbix监控Mysql配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,7 +584,7 @@ git reset --soft {id} # 撤回到上一个提交，并保留缓冲区数据（am
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitlab服务器使用的一些命令记录"><span class="nav-number">1.</span> <span class="nav-text">gitlab服务器使用的一些命令记录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置方法"><span class="nav-number">3.</span> <span class="nav-text">配置方法</span></a></li></ol></div>
             
 
           </div>
