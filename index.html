@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/zabbix_mysql/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/mysql_ms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qq77moon">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/09/zabbix_mysql/" itemprop="url">Zabbix监控Mysql配置</a></h1>
+                <a class="post-title-link" href="/2018/10/12/mysql_ms/" itemprop="url">Mysql主从复制及keepalived自动切换</a></h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">
-                2018-10-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T00:00:00+08:00">
+                2018-10-12
               </time>
             
 
@@ -355,14 +355,18 @@
       
         
           
-          背景使用zabbix自带的模版添加对Mysql的监控。
-环境Ubuntu 16.04.5 LTSZabbix 4.0Mysql 5.7.23
-配置方法1、 Mysql新建用户
-为了安全起见，最好不要用root用户采集数据，可以在客户端的Mysql里添加用户专门负责收集数据，这里用zabbix用户采集
+          背景配置Mysql主从复制，保障数据安全，并通过keepalived实现主从自动切换。
+环境
+Ubuntu 16.04.5 LTS
+Mysql 5.7.23
+master: 192.168.0.100
+slave: 192.168.101
+keepalived vip: 192.168.0.200
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/09/zabbix_mysql/#more" rel="contents">
+            <a class="btn" href="/2018/10/12/mysql_ms/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -507,10 +511,14 @@
         
           
           背景使用zabbix自带的模版添加对Postgresql的监控。
-环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5
+环境
+Ubuntu 16.04.5 LTS
+Zabbix 4.0
+Postgresql 10.5
+
 配置方法1、 安装libzbxpgsql
 需要先安装libzbxpgsql模块
-123wget http://cdn.cavaliercode
+123wget http://cdn.cavalier
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -565,7 +573,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/postgresql/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/zabbix_mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qq77moon">
@@ -584,7 +592,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/13/postgresql/" itemprop="url">基于docker的postgresql主从复制部署</a></h1>
+                <a class="post-title-link" href="/2018/10/09/zabbix_mysql/" itemprop="url">Zabbix监控Mysql配置</a></h1>
         
 
         <div class="post-meta">
@@ -596,8 +604,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
-                2018-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T00:00:00+08:00">
+                2018-10-09
               </time>
             
 
@@ -658,16 +666,18 @@
       
         
           
-          背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。
-环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库
-安装部署
-附：Ubuntu16下直接安装postgresql 10
-导入 PostgreSQL 包的 GPG 密钥
-12&
+          背景使用zabbix自带的模版添加对Mysql的监控。
+环境
+Ubuntu 16.04.5 LTS
+Zabbix 4.0
+Mysql 5.7.23
+
+配置方法1、 Mysql新建用户
+为了安全起见，最好不要用root用户采集数据，可以在客户端的Mysql里添加用户专门负责收集数据，这里用zabbix
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/13/postgresql/#more" rel="contents">
+            <a class="btn" href="/2018/10/09/zabbix_mysql/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -823,6 +833,159 @@ Docker CE 可以安装
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/13/docker_ce/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/postgresql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qq77moon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qq77moon's 花草后院">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/13/postgresql/" itemprop="url">基于docker的postgresql主从复制部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T00:00:00+08:00">
+                2018-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          背景出于保证数据库可靠性的考虑，避免数据丢失对项目造成损失，对postgresql做主从复制备份。
+环境192.168.0.1 部署主数据库192.168.0.2 部署从数据库
+安装部署
+附：Ubuntu16下直接安装postgresql 10
+导入 PostgreSQL 包的 GPG 密钥
+12&
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/13/postgresql/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1173,158 +1336,6 @@ Docker CE 可以安装
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/gitlab_use/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qq77moon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qq77moon's 花草后院">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/27/gitlab_use/" itemprop="url">gitlab使用过程中的一些命令记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T00:00:00+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          gitlab服务器使用的一些命令记录
-先fork一个项目，然后在本地clone项目
-
-修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接：
-git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/27/gitlab_use/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/jumpserver_use_document/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1474,7 +1485,7 @@ git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/SSL/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/gitlab_use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qq77moon">
@@ -1493,7 +1504,7 @@ git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/24/SSL/" itemprop="url">获取Let's Encrypt免费SSL证书</a></h1>
+                <a class="post-title-link" href="/2018/08/27/gitlab_use/" itemprop="url">gitlab使用过程中的一些命令记录</a></h1>
         
 
         <div class="post-meta">
@@ -1505,8 +1516,8 @@ git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T00:00:00+08:00">
-                2018-08-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T00:00:00+08:00">
+                2018-08-27
               </time>
             
 
@@ -1528,8 +1539,8 @@ git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -1567,15 +1578,15 @@ git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
       
         
           
-          1.SSL证书1.1 获取证书获取Let’s Encrypt免费SSL证书，首先获取脚本:
-git clone https://github.com/letsencrypt/letsencrypt
-cd letsencrypt
-chmod a+x certbot-auto
-使用Certbot客户端申
+          gitlab服务器使用的一些命令记录
+先fork一个项目，然后在本地clone项目
+
+修改本地项目的upstream和origin，尽量使用ssh的链接，不要使用https链接：
+git remote set-url upstream ssh://git@git.xxxx.xx:10022/Shan
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/24/SSL/#more" rel="contents">
+            <a class="btn" href="/2018/08/27/gitlab_use/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1816,7 +1827,7 @@ sudo apt-ge
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1838,7 +1849,7 @@ sudo apt-ge
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

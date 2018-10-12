@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
+<meta name="description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境 Ubuntu 16.04.5 LTS Zabbix 4.0 Postgresql 10.5  配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/a">
 <meta name="keywords" content="zabbix,监控,Postgresql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zabbix监控Postgresql配置">
 <meta property="og:url" content="http://yoursite.com/2018/10/09/zabbix_postgresql/index.html">
 <meta property="og:site_name" content="qq77moon&#39;s 花草后院">
-<meta property="og:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
+<meta property="og:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境 Ubuntu 16.04.5 LTS Zabbix 4.0 Postgresql 10.5  配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/a">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic1.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic2.png">
-<meta property="og:updated_time" content="2018-10-09T09:41:19.000Z">
+<meta property="og:updated_time" content="2018-10-12T03:54:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix监控Postgresql配置">
-<meta name="twitter:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境Ubuntu 16.04.5 LTSZabbix 4.0Postgresql 10.5 配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64">
+<meta name="twitter:description" content="背景使用zabbix自带的模版添加对Postgresql的监控。 环境 Ubuntu 16.04.5 LTS Zabbix 4.0 Postgresql 10.5  配置方法1、 安装libzbxpgsql 需要先安装libzbxpgsql模块 123wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/a">
 <meta name="twitter:image" content="http://yoursite.com/2018/10/09/zabbix_postgresql/pic1.png">
 
 
@@ -356,7 +356,11 @@
 
       
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>使用zabbix自带的模版添加对Postgresql的监控。</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04.5 LTS<br>Zabbix 4.0<br>Postgresql 10.5</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>Ubuntu 16.04.5 LTS</li>
+<li>Zabbix 4.0</li>
+<li>Postgresql 10.5</li>
+</ul>
 <h1 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h1><p>1、 安装libzbxpgsql</p>
 <p>需要先安装libzbxpgsql模块</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://cdn.cavaliercoder.com/libzbxpgsql/apt/zabbix32/ubuntu/trusty/amd64/libzbxpgsql_1.1.0-1%2Btrusty_amd64.deb</span><br><span class="line">sudo apt-get install libc6 libconfig9</span><br><span class="line">sudo dpkg -i libzbxpgsql_1.1.0-1+trusty_amd64.deb</span><br></pre></td></tr></table></figure>
@@ -414,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/13/postgresql/" rel="next" title="基于docker的postgresql主从复制部署">
-                <i class="fa fa-chevron-left"></i> 基于docker的postgresql主从复制部署
+              <a href="/2018/10/09/zabbix_mysql/" rel="next" title="Zabbix监控Mysql配置">
+                <i class="fa fa-chevron-left"></i> Zabbix监控Mysql配置
               </a>
             
           </div>
@@ -424,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/09/zabbix_mysql/" rel="prev" title="Zabbix监控Mysql配置">
-                Zabbix监控Mysql配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/12/mysql_ms/" rel="prev" title="Mysql主从复制及keepalived自动切换">
+                Mysql主从复制及keepalived自动切换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -507,7 +511,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +533,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
